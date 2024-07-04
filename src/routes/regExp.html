@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .success{
+
+        } */
+        input.failed{
+            color: red;
+        }
+        label[for='password']{
+            display: none;
+        }
+        label[for='password'].show{
+            display: block;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="password"  class="failed"/>
+    <label for="password">비밀번호는 8자리이상 영문, 특수문자 $#&*, 숫자를 반드시 포함해야 합니다.</label>
+    <script>
+        document.querySelector('#password').addEventListener('input', function(event){
+            let password = event.target.value;
+            if(/[\w$%*&]{8,}/img.test(password)){ // 정규표현식 수정필요
+                console.log('비밀번호는 Success');
+                event.target.classList.remove('failed');
+                document.querySelector("label[for='password']").classList.remove('show')
+            }else{
+                console.log('비밀번호는 Error');
+                event.target.classList.add('failed');
+                document.querySelector("label[for='password']").classList.add('show')
+            }
+        });
+    </script>
+</body>
+</html>
